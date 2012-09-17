@@ -84,9 +84,9 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Microsoft Excel Input</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>If field value is null</to><enabled>Y</enabled> </hop>  <hop> <from>If field value is null</from><to>Dimension lookup&#47;update</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Table input - dsClientes</from><to>String operations</to><enabled>Y</enabled> </hop>  <hop> <from>String operations</from><to>If field value is null</to><enabled>Y</enabled> </hop>  <hop> <from>If field value is null</from><to>Value Mapper - SEXO</to><enabled>Y</enabled> </hop>  <hop> <from>Value Mapper - SEXO</from><to>Value Mapper - Estado Civil</to><enabled>Y</enabled> </hop>  <hop> <from>Value Mapper - Estado Civil</from><to>Dimension lookup&#47;update - dimClientes</to><enabled>Y</enabled> </hop>  </order>
   <step>
-    <name>Dimension lookup&#47;update</name>
+    <name>Dimension lookup&#47;update - dimClientes</name>
     <type>DimensionLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -110,14 +110,19 @@
           <lookup>SEXO</lookup>
         </key>
         <key>
-          <name>ESTADO_CIVIL</name>
-          <lookup>ESTADO_CIVIL</lookup>
+          <name>DAT_NASCIMENTO</name>
+          <lookup>DAT_NASCIMENTO</lookup>
         </key>
         <date>
           <name/>
           <from>date_from</from>
           <to>date_to</to>
         </date>
+        <field>
+          <name>ESTADO_CIVIL</name>
+          <lookup>ESTADO_CIVIL</lookup>
+          <update>Insert</update>
+        </field>
         <return>
           <name>pkCliente</name>
           <rename/>
@@ -136,106 +141,15 @@
       <start_date_field_name/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>526</xloc>
-      <yloc>86</yloc>
+      <xloc>819</xloc>
+      <yloc>33</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>If field value is null</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <replaceAllByValue/>
-      <replaceAllMask/>
-      <selectFields>Y</selectFields>
-      <selectValuesType>N</selectValuesType>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>CLIENTE</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>NOME</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>ENDERECO</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>BAIRRO</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>CIDADE</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>ESTADO</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>SEXO</name>
-        <value>M</value>
-        <mask/>
-        </field>
-      <field>
-        <name>ESTADO_CIVIL</name>
-        <value>SOLTEIRO</value>
-        <mask/>
-        </field>
-      <field>
-        <name>DAT_NASCIMENTO</name>
-        <value>1980-01-01</value>
-        <mask/>
-        </field>
-      <field>
-        <name>ULTIMA_COMPRA</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>MAIOR_COMPRA</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>VALOR_ULTIMA_COMPRA</name>
-        <value/>
-        <mask/>
-        </field>
-      <field>
-        <name>N_COMPRAS</name>
-        <value/>
-        <mask/>
-        </field>
-      </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>357</xloc>
-      <yloc>86</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Microsoft Excel Input</name>
-    <type>ExcelInput</type>
+    <name>Table input - dsClientes</name>
+    <type>TableInput</type>
     <description/>
     <distribute>N</distribute>
     <copies>1</copies>
@@ -243,215 +157,23 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <header>Y</header>
-    <noempty>Y</noempty>
-    <stoponempty>N</stoponempty>
-    <filefield/>
-    <sheetfield/>
-    <sheetrownumfield/>
-    <rownumfield/>
-    <sheetfield/>
-    <filefield/>
+    <connection>SqlServer</connection>
+    <sql>SELECT
+  NOME
+, SEXO
+, ESTADO_CIVIL
+, DAT_NASCIMENTO
+FROM dsClientes
+</sql>
     <limit>0</limit>
-    <encoding/>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <accept_filenames>N</accept_filenames>
-    <accept_field/>
-    <accept_stepname/>
-    <file>
-      <name>D:\Pentaho\Dados\CLIENTES.xls</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>CLIENTE</name>
-        <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>NOME</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ENDERECO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>BAIRRO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>CIDADE</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ESTADO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>SEXO</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ESTADO_CIVIL</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>DAT_NASCIMENTO</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>ULTIMA_COMPRA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>MAIOR_COMPRA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>VALOR_ULTIMA_COMPRA</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>N_COMPRAS</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-    </fields>
-    <sheets>
-      <sheet>
-        <name>CLIENTES</name>
-        <startrow>0</startrow>
-        <startcol>0</startcol>
-        </sheet>
-    </sheets>
-    <strict_types>N</strict_types>
-    <error_ignored>N</error_ignored>
-    <error_line_skipped>N</error_line_skipped>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <spreadsheet_type>JXL</spreadsheet_type>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>38</xloc>
-      <yloc>86</yloc>
+      <xloc>86</xloc>
+      <yloc>39</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -471,11 +193,11 @@
         <in_stream_name>NOME</in_stream_name>
         <out_stream_name/>
         <trim_type>both</trim_type>
-        <lower_upper>lower</lower_upper>
+        <lower_upper>upper</lower_upper>
         <padding_type>none</padding_type>
         <pad_char/>
         <pad_len/>
-        <init_cap>yes</init_cap>
+        <init_cap>no</init_cap>
         <mask_xml>none</mask_xml>
         <digits>none</digits>
         <remove_special_characters>none</remove_special_characters>
@@ -509,8 +231,120 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>204</xloc>
-      <yloc>86</yloc>
+      <xloc>84</xloc>
+      <yloc>293</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>If field value is null</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <replaceAllByValue/>
+      <replaceAllMask/>
+      <selectFields>Y</selectFields>
+      <selectValuesType>N</selectValuesType>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>NOME</name>
+        <value/>
+        <mask/>
+        </field>
+      <field>
+        <name>SEXO</name>
+        <value>M</value>
+        <mask/>
+        </field>
+      <field>
+        <name>ESTADO_CIVIL</name>
+        <value>S</value>
+        <mask/>
+        </field>
+      <field>
+        <name>DAT_NASCIMENTO</name>
+        <value>1980&#47;01&#47;01</value>
+        <mask>yyyy&#47;MM&#47;dd</mask>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>300</xloc>
+      <yloc>290</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Value Mapper - SEXO</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>SEXO</field_to_use>
+    <target_field/>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>M</source_value>
+        <target_value>Masculino</target_value>
+      </field>
+      <field>
+        <source_value>F</source_value>
+        <target_value>Feminino</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>543</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Value Mapper - Estado Civil</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>ESTADO_CIVIL</field_to_use>
+    <target_field/>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>S</source_value>
+        <target_value>Solteiro</target_value>
+      </field>
+      <field>
+        <source_value>C</source_value>
+        <target_value>Casado</target_value>
+      </field>
+      <field>
+        <source_value>O</source_value>
+        <target_value>Divorciado</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>820</xloc>
+      <yloc>294</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
