@@ -66,8 +66,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>26</xloc>
-      <yloc>19</yloc>
+      <xloc>29</xloc>
+      <yloc>15</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -76,8 +76,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>548</yloc>
+      <xloc>53</xloc>
+      <yloc>432</yloc>
       </entry>
     <entry>
       <name>Transformation - dimClientes</name>
@@ -108,8 +108,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>228</xloc>
-      <yloc>153</yloc>
+      <xloc>889</xloc>
+      <yloc>166</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -119,8 +119,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>677</xloc>
-      <yloc>533</yloc>
+      <xloc>50</xloc>
+      <yloc>299</yloc>
       </entry>
     <entry>
       <name>Mail</name>
@@ -158,8 +158,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>230</xloc>
-      <yloc>548</yloc>
+      <xloc>236</xloc>
+      <yloc>430</yloc>
       </entry>
     <entry>
       <name>E-mail Falha</name>
@@ -197,8 +197,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>680</xloc>
-      <yloc>394</yloc>
+      <xloc>232</xloc>
+      <yloc>300</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -210,8 +210,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>667</xloc>
-      <yloc>239</yloc>
+      <xloc>374</xloc>
+      <yloc>299</yloc>
       </entry>
     <entry>
       <name>dimLocal</name>
@@ -242,8 +242,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>228</xloc>
-      <yloc>296</yloc>
+      <xloc>885</xloc>
+      <yloc>309</yloc>
       </entry>
     <entry>
       <name>dimProdutos</name>
@@ -274,8 +274,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>230</xloc>
-      <yloc>400</yloc>
+      <xloc>889</xloc>
+      <yloc>427</yloc>
       </entry>
     <entry>
       <name>Check Db connections</name>
@@ -291,8 +291,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>23</xloc>
-      <yloc>240</yloc>
+      <xloc>191</xloc>
+      <yloc>14</yloc>
       </entry>
     <entry>
       <name>Table exists - dimTempo</name>
@@ -304,8 +304,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>232</xloc>
-      <yloc>16</yloc>
+      <xloc>581</xloc>
+      <yloc>12</yloc>
       </entry>
     <entry>
       <name>dimTempo</name>
@@ -336,8 +336,70 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>479</xloc>
-      <yloc>25</yloc>
+      <xloc>888</xloc>
+      <yloc>9</yloc>
+      </entry>
+    <entry>
+      <name>Job - Data Staging</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;DataStaging.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>374</xloc>
+      <yloc>10</yloc>
+      </entry>
+    <entry>
+      <name>fatoPedidos</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>${Internal.Job.Filename.Directory}&#47;fatoPedidos.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>883</xloc>
+      <yloc>552</yloc>
       </entry>
   </entries>
   <hops>
@@ -355,7 +417,7 @@
       <to>Abort job</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
     </hop>
@@ -396,31 +458,13 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>dimProdutos</from>
-      <to>Mail</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
       <to>Check Db connections</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Check Db connections</from>
-      <to>Table exists - dimTempo</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Table exists - dimTempo</from>
@@ -474,6 +518,60 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check Db connections</from>
+      <to>Job - Data Staging</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Job - Data Staging</from>
+      <to>Table exists - dimTempo</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Job - Data Staging</from>
+      <to>Write To Log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>dimProdutos</from>
+      <to>fatoPedidos</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>fatoPedidos</from>
+      <to>Write To Log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>fatoPedidos</from>
+      <to>Mail</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
