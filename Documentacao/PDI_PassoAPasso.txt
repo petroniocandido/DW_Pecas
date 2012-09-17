@@ -1,0 +1,197 @@
+-------------------------------------------
+- PRÉ-REQUISITOS
+-------------------------------------------
+ - Copiar os drivers dos SGBD's no PDI
+	- \Pentaho\pdi-ce-4.3.0-stable\data-integration\libext\JDBC
+	
+ - Criar o BD DataWarehouse no SGBD
+
+-------------------------------------------
+- Iniciando o PDI
+-------------------------------------------
+ 
+ - Iniciar o PDI
+	- \Pentaho\pdi-ce-4.3.0-stable\data-integration\Spoon.bat
+
+-------------------------------------------
+- CRIANDO AS TRANSFORMAÇÕES
+-------------------------------------------
+
+	* Transformações são processos que atuam sobre dados: lendo de uma ou mais fontes (arquivo, tabela, etc...), alterando e/ou processando os dados e granvando em um destino de dados (arquivo, tabela, etc...)
+	* Crie uma transformation para cada data staging, dimensão e tabela de fatos do Data Warehouse
+	* Transformations são compostas de:
+		- Connections: Conexões com todos os BD's necessários (tanto de origem quanto de destino)
+		- Steps: Qualquer processo que é executado sobre dados
+		- Hops: Uma ligação entre 2 steps. Indica um fluxo de dados (stream) entre os steps
+	
+ - Criar uma nova transformação
+	-> File -> New -> Transformation
+	
+ - Adicionar as conexões para os SBBD's
+	- Clique na aba View
+	- Connection -> Novo Assistente de Conexao
+	
+ - Configurar as steps/hops
+	- Clique na aba Design
+
+-------------------------------------------
+- LENDO DADOS DE UMA FONTE DE DADOS
+-------------------------------------------
+	
+ - Ler dados de arquivos do Excel
+	- Adicione o step Input -> Microsoft Excel Input
+	- Clique duas vezes no ícone do step para visualizar as propriedades
+		-> Files
+			- Adicione um ou mais arquivos
+		-> Sheets
+			- Selecione as planilhas, start row e start column
+		-> Content
+			- Header (pegar a 1a linha com o nome dos campos)
+			- No Empty Rows (Ignora linhas vazias)
+			- Stop on Empty rows
+			- Limit
+			- Encoding
+			- Spread Sheet type: Excell, Open Office, etc..
+			
+ - Ler dados de tabelas de um banco de dados
+	- Adicione o step Input -> Table Input
+		-> Connection
+		-> SQL
+			* Crie uma sql para retornar os dados que você precisa
+
+-------------------------------------------
+- GRAVANDO A TABELA DE DIMENSÕES
+-------------------------------------------
+			
+ - Adicionar Dimensão
+	- Adicione o step Input -> Dimension Lookup/Update
+	- Clique duas vezes no ícone do step para visualizar as propriedades
+		-> Step Name
+		-> Update the dimension?
+		-> Connection, Target Schema, Target Table
+		-> Commit Size
+		-> Keys 
+			- Key Fields (to lookup row in dimension)
+				*Dimension Field, Field in Stream
+		-> Fields
+			- Lookup/Update Fields
+				- Dimension Field
+				- Stream Field to compare with
+				- Type of dimension update
+					- Insert
+					- Update
+					- Punch through
+					- Date of last insert or update (without stream field as source)
+					- Date of last insert (without stream field as source)
+					- Date of last update (without stream field as source)
+					- Last version (without stream field as source)
+		-> Technical Key Field
+			- Creation of technical key: Use table maximum + 1, Sequence, Use auto-increment field
+		-> Version Field
+		-> Stream DateField
+		-> Date Range Start Field
+		-> Use an alternative start date?
+		-> Table Date Range End
+		
+		* Get Fields
+			- Busca a lista de campos na Stream de entrada
+		* SQL
+			- Mostra a sql necessária para criar a tabela de dimensão
+			- Execute
+			- Clear Cache
+			- Fecha
+			
+-------------------------------------------
+- GRAVANDO A TABELA DE FATOS
+-------------------------------------------
+
+ - Incluir step de leitura da tabela fonte 
+	-> Input -> Excel Input ou Table Input
+		- Adiciona uma entrada de dados 
+ 
+ - Incluir steps para buscar as chaves técnicas das dimensões (um para cada dimensão)
+	-> Lookup -> Database Lookup 
+		* Connection: A conexão onde estará a tabela de lookup
+			- Escolha a conexão do DW
+		* Lookup Table: A tabela que será utilizada para pesquisar os valores
+			- Escolha a tabela de uma das dimensões
+		* Keys to look up table: Os campos que serão avaliados para realizar a pesquisa
+			- Compare os campos da origem com os campos da dimensão
+		* Values to return table: Os valores que serão retornados caso um valor seja encontrado
+			- Retorna a chave técnica da dimensão
+		* Get Fields: Busca os campos de origem que serão verificados
+		* Get lookup fields: Busca os campos da tabela de pesquisa
+
+ - Incluir step para organizar os campos da tabela de fatos
+	-> Transform -> Select Values
+		* Select & Alter
+			- Selecionar só os campos que serão gravados na tabela de fatos
+		* Remove
+			- Incluir todos os campos desnecessários
+		
+		
+ - Incluir step de gravação da tabela de fatos
+	-> Output -> Table Output
+		* Connection
+		* Target Table
+		* Database Fields
+			- Campos a serem gravados na tabela
+		* Enter Field Mapping
+			- Identifica os campos de entrada e mapeia para a tabela a ser gravada
+
+-------------------------------------------
+- CRIANDO OS JOBS
+-------------------------------------------
+
+	* Jobs são processos de controle, onde organizamos o processo de ETL e fazemos tratamento de erros, gravamos logs e outras tarefas administrativas necessárias.
+	* Dentro dos jobs indicamos a ordem em que as transformations e outras jobs são executadas e o que será feito em caso de sucesso ou falha.
+	* Jobs são compostas de:
+		- Connections: Conexões com todos os BD's necessários (tanto de origem quanto de destino)
+		- Steps: Qualquer processo que é executado
+		- Hops: Uma ligação entre 2 steps. Indica um fluxo de controle entre os steps
+			Um hop pode ser: Incondicional, De Sucesso ou de Falha
+	
+
+ - Criar uma nova Job
+	-> File -> New -> Job
+	
+ - Adicionar as conexões para os SBBD's
+	- Clique na aba View
+	- Connection -> Novo Assistente de Conexao
+	
+ - Configurar as steps/hops
+	- Clique na aba Design
+	
+ - Adicionar Ponto de Início
+	-> General -> START
+	
+ - Checar as pré-condições
+	-> Conditions 
+		- Check Db Connections
+		- Checks if file exists
+	- etc...
+	
+ - Adicionar as transformações de dados já configuradas
+	-> General -> Transformation
+		- Name of job entry: Nome que aparecerá no diagrama
+		- Transformation filename: caminho para o arquivo .ktr da transformation
+		
+ - Ligar com o Hop "Segue quando o resultado é falso" com o tratamento de erros para cada transformação
+ 
+	- Gravar mensagens de erro
+		-> Utility -> Write To Log
+		
+	- Enviar e-mail
+		-> Email -> E-mail
+		
+	- Cancelar a job
+		-> Utility -> Abort Job
+
+ - Ligar as transformações em cadeia com um hop "Segue quando o resultado é verdadeiro"
+ 
+ - Adicionar ponto de finalização de sucesso
+	-> General -> Success
+	
+-------------------------------------------
+- AGENDAR TAREFAS
+-------------------------------------------
