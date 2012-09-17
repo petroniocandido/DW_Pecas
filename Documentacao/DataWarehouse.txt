@@ -1,0 +1,82 @@
+CREATE TABLE [dbo].[dimClientes](
+	[pkCliente] [bigint] NOT NULL,
+	[version] [int] NULL,
+	[date_from] [datetime] NULL,
+	[date_to] [datetime] NULL,
+	[NOME] [varchar](100) NULL,
+	[SEXO] [varchar](100) NULL,
+	[DAT_NASCIMENTO] [datetime] NULL,
+	[ESTADO_CIVIL] [varchar](100) NULL,
+	
+	PRIMARY KEY ([pkCliente])
+)
+
+CREATE TABLE [dbo].[dimLocal](
+	[pkLocal] [bigint] NOT NULL,
+	[version] [int] NULL,
+	[date_from] [datetime] NULL,
+	[date_to] [datetime] NULL,
+	[BAIRRO] [varchar](100) NULL,
+	[CIDADE] [varchar](100) NULL,
+	[ESTADO] [varchar](100) NULL,
+	
+	PRIMARY KEY ([pkLocal])
+) 
+
+CREATE TABLE [dbo].[dimProdutos](
+	[pkProduto] [bigint] NOT NULL,
+	[version] [int] NULL,
+	[date_from] [datetime] NULL,
+	[date_to] [datetime] NULL,
+	[DESCRICAO] [varchar](100) NULL,
+	
+	PRIMARY KEY([pkProduto])
+)
+
+CREATE TABLE [dbo].[dimTempo](
+	[ID] [bigint] IDENTITY(0,1) NOT NULL,
+	[year_number] [int] NULL,
+	[month_number] [int] NULL,
+	[day_of_year_number] [int] NULL,
+	[day_of_month_number] [int] NULL,
+	[day_of_week_number] [int] NULL,
+	[week_of_year_number] [int] NULL,
+	[day_name] [varchar](30) NULL,
+	[month_name] [varchar](30) NULL,
+	[quarter_number] [int] NULL,
+	[quarter_name] [varchar](2) NULL,
+	[year_quarter_name] [varchar](32) NULL,
+	[weekend_ind] [varchar](1) NULL,
+	[DAYS_IN_MONTH_QTY] [int] NULL,
+	[DATE_SK] [int] NULL,
+	[DAY_DESC] [varchar](100) NULL,
+	[WEEK_SK] [int] NULL,
+	[DAY_DATE] [datetime] NULL,
+	[week_name] [varchar](32) NULL,
+	[week_of_month_number] [int] NULL,
+	[week_of_month_name] [varchar](100) NULL,
+	[MONTH_SK] [int] NULL,
+	[QUARTER_SK] [int] NULL,
+	[YEAR_SK] [int] NULL,
+	[YEAR_SORT_NUMBER] [varchar](4) NULL,
+	[DAY_OF_WEEK_SORT_NAME] [varchar](60) NULL,
+	
+	PRIMARY KEY([ID])
+)
+
+CREATE TABLE [dbo].[fatoPedidos](
+	[QUANTIDADE] [float] NOT NULL,
+	[VALOR_UN] [float] NOT NULL,
+	[pkCliente] [bigint] ,
+	[pkLocal] [bigint] ,
+	[pkProduto] [bigint] ,
+	[pkTempo] [bigint] 
+	
+	PRIMARY KEY (pkCliente, pkLocal, pkProduto, pkTempo)
+	
+	FOREIGN KEY (pkProduto) REFERENCES dimProdutos(pkProduto)
+	FOREIGN KEY (pkLocal) REFERENCES dimLocal(pkLocal)
+	FOREIGN KEY (pkCliente) REFERENCES dimClientes(pkCliente)
+	FOREIGN KEY (pkTempo) REFERENCES dimTempo(ID)
+) 
+

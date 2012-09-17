@@ -1,0 +1,47 @@
+CREATE TABLE [dbo].[Clientes](
+	[CLIENTE] [int] NULL,
+	[NOME] [varchar](100) NULL,
+	[ENDERECO] [varchar](100) NULL,
+	[BAIRRO] [varchar](100) NULL,
+	[CIDADE] [varchar](100) NULL,
+	[ESTADO] [varchar](100) NULL,
+	[SEXO] [varchar](100) NULL,
+	[ESTADO_CIVIL] [varchar](100) NULL,
+	[DAT_NASCIMENTO] [datetime] NULL,
+	[ULTIMA_COMPRA] [varchar](100) NULL,
+	[MAIOR_COMPRA] [varchar](100) NULL,
+	[VALOR_ULTIMA_COMPRA] [varchar](100) NULL,
+	[N_COMPRAS] [varchar](100) NULL
+	
+	PRIMARY KEY ([CLIENTE])
+	
+) 
+
+
+CREATE TABLE [dbo].[dsProdutos](
+	[PRODUTO] [int] NULL,
+	[DESCRICAO] [varchar](100) NULL,
+	[UNIDADE] [varchar](100) NULL
+	
+	PRIMARY KEY([PRODUTO])
+)
+
+CREATE TABLE [dbo].[dsItens](
+	[NOTA] [int] NULL,
+	[DATA_COMPRA] [datetime] NULL,
+	[PRODUTO] [int] NULL,
+	[CLIENTE] [int] NULL,
+	[QUANTIDADE] [float] NULL,
+	[VALOR_UN] [float] NULL,
+	[UNIDADE] [varchar](100) NULL,
+	[CANCELADA] [varchar](100) NULL,
+	[SERVICO] [varchar](100) NULL
+	
+	PRIMARY KEY([NOTA])
+	
+	FOREIGN KEY([CLIENTE]) REFERENCES CLIENTES(CLIENTE)
+	FOREIGN KEY([PRODUTO]) REFERENCES PRODUTOS(PRODUTO)
+	
+) 
+
+
