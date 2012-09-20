@@ -76,8 +76,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>53</xloc>
-      <yloc>432</yloc>
+      <xloc>50</xloc>
+      <yloc>554</yloc>
       </entry>
     <entry>
       <name>Transformation - dimClientes</name>
@@ -108,8 +108,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>889</xloc>
-      <yloc>166</yloc>
+      <xloc>714</xloc>
+      <yloc>172</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -158,8 +158,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>236</xloc>
-      <yloc>430</yloc>
+      <xloc>258</xloc>
+      <yloc>555</yloc>
       </entry>
     <entry>
       <name>E-mail Falha</name>
@@ -242,8 +242,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>885</xloc>
-      <yloc>309</yloc>
+      <xloc>710</xloc>
+      <yloc>315</yloc>
       </entry>
     <entry>
       <name>dimProdutos</name>
@@ -274,8 +274,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>889</xloc>
-      <yloc>427</yloc>
+      <xloc>714</xloc>
+      <yloc>433</yloc>
       </entry>
     <entry>
       <name>Check Db connections</name>
@@ -304,8 +304,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>581</xloc>
-      <yloc>12</yloc>
+      <xloc>543</xloc>
+      <yloc>16</yloc>
       </entry>
     <entry>
       <name>dimTempo</name>
@@ -336,8 +336,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>888</xloc>
-      <yloc>9</yloc>
+      <xloc>713</xloc>
+      <yloc>15</yloc>
       </entry>
     <entry>
       <name>Job - Data Staging</name>
@@ -398,8 +398,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>883</xloc>
-      <yloc>552</yloc>
+      <xloc>708</xloc>
+      <yloc>558</yloc>
       </entry>
   </entries>
   <hops>
