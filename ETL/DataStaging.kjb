@@ -66,8 +66,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>472</xloc>
-      <yloc>19</yloc>
+      <xloc>427</xloc>
+      <yloc>10</yloc>
       </entry>
     <entry>
       <name>Check Db connections</name>
@@ -104,8 +104,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>86</xloc>
-      <yloc>443</yloc>
+      <xloc>76</xloc>
+      <yloc>408</yloc>
       </entry>
     <entry>
       <name>dsClientes Existe</name>
@@ -118,7 +118,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>73</xloc>
-      <yloc>131</yloc>
+      <yloc>110</yloc>
       </entry>
     <entry>
       <name>dsItens Existe</name>
@@ -130,8 +130,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>69</xloc>
-      <yloc>242</yloc>
+      <xloc>74</xloc>
+      <yloc>218</yloc>
       </entry>
     <entry>
       <name>dsProdutos Existe</name>
@@ -143,8 +143,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>80</xloc>
-      <yloc>355</yloc>
+      <xloc>78</xloc>
+      <yloc>312</yloc>
       </entry>
     <entry>
       <name>dsClientes</name>
@@ -175,8 +175,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>89</xloc>
-      <yloc>562</yloc>
+      <xloc>212</xloc>
+      <yloc>389</yloc>
       </entry>
     <entry>
       <name>dsProdutos</name>
@@ -207,8 +207,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>353</xloc>
-      <yloc>559</yloc>
+      <xloc>316</xloc>
+      <yloc>384</yloc>
       </entry>
     <entry>
       <name>dsItens</name>
@@ -239,8 +239,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>567</xloc>
-      <yloc>561</yloc>
+      <xloc>441</xloc>
+      <yloc>378</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -249,8 +249,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>806</xloc>
-      <yloc>554</yloc>
+      <xloc>525</xloc>
+      <yloc>359</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -260,21 +260,21 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>711</xloc>
-      <yloc>225</yloc>
+      <xloc>460</xloc>
+      <yloc>230</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
       <description/>
       <type>WRITE_TO_LOG</type>
       <logmessage/>
-      <loglevel/>
+      <loglevel>Basic</loglevel>
       <logsubject/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>424</xloc>
-      <yloc>234</yloc>
+      <xloc>289</xloc>
+      <yloc>169</yloc>
       </entry>
   </entries>
   <hops>
