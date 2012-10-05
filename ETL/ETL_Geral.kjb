@@ -93,7 +93,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>D:\Pentaho\Transformations\dimClientes.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;dimClientes.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -259,7 +259,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename/>
+      <filename>${Internal.Job.Filename.Directory}&#47;dimProdutos.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -292,8 +292,8 @@
       <connections>
         <connection>
           <name>SqlServer</name>
-          <waitfor>2</waitfor>
-          <waittime>minute</waittime>
+          <waitfor>20</waitfor>
+          <waittime>second</waittime>
         </connection>
       </connections>
       <parallel>N</parallel>
