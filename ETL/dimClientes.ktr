@@ -105,14 +105,6 @@
           <name>NOME</name>
           <lookup>NOME</lookup>
         </key>
-        <key>
-          <name>SEXO</name>
-          <lookup>SEXO</lookup>
-        </key>
-        <key>
-          <name>DAT_NASCIMENTO</name>
-          <lookup>DAT_NASCIMENTO</lookup>
-        </key>
         <date>
           <name/>
           <from>date_from</from>
@@ -121,6 +113,16 @@
         <field>
           <name>ESTADO_CIVIL</name>
           <lookup>ESTADO_CIVIL</lookup>
+          <update>Insert</update>
+        </field>
+        <field>
+          <name>SEXO</name>
+          <lookup>SEXO</lookup>
+          <update>Insert</update>
+        </field>
+        <field>
+          <name>DAT_NASCIMENTO</name>
+          <lookup>DAT_NASCIMENTO</lookup>
           <update>Insert</update>
         </field>
         <return>
