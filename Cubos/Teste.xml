@@ -1,4 +1,4 @@
-<Schema name="New Schema1">
+<Schema name="Pe&#231;as">
   <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Pe&#231;a">
     <Hierarchy name="Produto" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkProduto">
       <Table name="dimProdutos" schema="dbo">
@@ -19,42 +19,40 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Cube name="Teste" visible="true" cache="true" enabled="true">
+  <Dimension type="StandardDimension" visible="true" name="Local">
+    <Hierarchy name="Local" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkLocal">
+      <Table name="dimLocal" schema="dbo" alias="">
+      </Table>
+      <Level name="Estado" visible="true" column="ESTADO" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Cidade" visible="true" column="CIDADE" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Bairro" visible="true" column="BAIRRO" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Clientes">
+    <Hierarchy name="Clientes" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkCliente">
+      <Table name="dimClientes" schema="dbo" alias="">
+      </Table>
+      <Level name="Sexo" visible="true" column="SEXO" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Estado Civil" visible="true" column="ESTADO_CIVIL" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Cliente" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Vendas" visible="true" cache="true" enabled="true">
     <Table name="fatoPedidos" schema="dbo">
     </Table>
-    <Dimension type="StandardDimension" visible="true" foreignKey="pkCliente" highCardinality="false" name="Cliente">
-      <Hierarchy name="Nome" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkCliente">
-        <Table name="dimClientes" schema="dbo">
-        </Table>
-        <Level name="Nome" visible="true" table="dimClientes" column="NOME" nameColumn="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-      <Hierarchy name="Sexo" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkCliente">
-        <Table name="dimClientes" schema="dbo">
-        </Table>
-        <Level name="Sexo" visible="true" table="dimClientes" column="SEXO" nameColumn="SEXO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-        <Level name="Estado Civil" visible="true" table="dimClientes" column="ESTADO_CIVIL" nameColumn="ESTADO_CIVIL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-        <Level name="Cliente" visible="true" table="dimClientes" column="NOME" nameColumn="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
-    <Dimension type="StandardDimension" visible="true" foreignKey="pkLocal" highCardinality="false" name="Local">
-      <Hierarchy name="Local" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkLocal">
-        <Table name="dimLocal" schema="dbo">
-        </Table>
-        <Level name="Estado" visible="true" table="dimLocal" column="ESTADO" nameColumn="ESTADO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-        <Level name="Cidade" visible="true" table="dimLocal" column="CIDADE" nameColumn="CIDADE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-        <Level name="Bairro" visible="true" table="dimLocal" column="BAIRRO" nameColumn="BAIRRO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-        </Level>
-      </Hierarchy>
-    </Dimension>
     <DimensionUsage source="Pe&#231;a" name="Pe&#231;a" visible="true" foreignKey="pkProduto" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Tempo" name="Data" visible="true" foreignKey="pkTempo" highCardinality="false">
+    <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="pkTempo" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Local" name="Local" visible="true" foreignKey="pkLocal">
+    </DimensionUsage>
+    <DimensionUsage source="Clientes" name="Clientes" visible="true" foreignKey="pkCliente">
     </DimensionUsage>
     <Measure name="QTD" column="QUANTIDADE" datatype="Numeric" aggregator="sum" visible="true">
     </Measure>
