@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>ETL_Geral2</name>
+  <name>ETL Geral</name>
     <description/>
     <extended_description/>
-    <job_version/>
+    <job_version>1</job_version>
+    <job_status>2</job_status>
   <directory>&#47;</directory>
   <created_user>-</created_user>
   <created_date>2012&#47;09&#47;14 21:44:39.566</created_date>
