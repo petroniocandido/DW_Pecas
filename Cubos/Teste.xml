@@ -19,27 +19,34 @@
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Local">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Local">
     <Hierarchy name="Local" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkLocal">
-      <Table name="dimLocal" schema="dbo" alias="">
+      <Table name="dimLocal" schema="dbo">
       </Table>
-      <Level name="Estado" visible="true" column="ESTADO" type="String" uniqueMembers="false" levelType="Regular">
+      <Level name="Estado" visible="true" column="ESTADO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Cidade" visible="true" column="CIDADE" type="String" uniqueMembers="false" levelType="Regular">
+      <Level name="Cidade" visible="true" column="CIDADE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Bairro" visible="true" column="BAIRRO" type="String" uniqueMembers="false" levelType="Regular">
+      <Level name="Bairro" visible="true" column="BAIRRO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" name="Clientes">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Clientes">
     <Hierarchy name="Clientes" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkCliente">
-      <Table name="dimClientes" schema="dbo" alias="">
+      <Table name="dimClientes" schema="dbo">
       </Table>
-      <Level name="Sexo" visible="true" column="SEXO" type="String" uniqueMembers="false" levelType="Regular">
+      <Level name="Sexo" visible="true" column="SEXO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Estado Civil" visible="true" column="ESTADO_CIVIL" type="String" uniqueMembers="false" levelType="Regular">
+      <Level name="Estado Civil" visible="true" column="ESTADO_CIVIL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
-      <Level name="Cliente" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular">
+      <Level name="Idade" visible="true" column="DAT_NASCIMENTO" type="Integer" uniqueMembers="false" levelType="Regular">
+        <KeyExpression>
+          <SQL dialect="mssql">
+            <![CDATA[datepart(year, getdate()) - datepart(year, DAT_NASCIMENTO)]]>
+          </SQL>
+        </KeyExpression>
+      </Level>
+      <Level name="Cliente" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
@@ -50,13 +57,15 @@
     </DimensionUsage>
     <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="pkTempo" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Local" name="Local" visible="true" foreignKey="pkLocal">
+    <DimensionUsage source="Local" name="Local" visible="true" foreignKey="pkLocal" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Clientes" name="Clientes" visible="true" foreignKey="pkCliente">
+    <DimensionUsage source="Clientes" name="Clientes" visible="true" foreignKey="pkCliente" highCardinality="false">
     </DimensionUsage>
     <Measure name="QTD" column="QUANTIDADE" datatype="Numeric" aggregator="sum" visible="true">
     </Measure>
     <Measure name="VALOR" column="VALOR_UN" datatype="Numeric" aggregator="sum" visible="true">
     </Measure>
+    <CalculatedMember name="Valor Total" formula="[Measures].[QTD]*[Measures].[VALOR]" dimension="Measures" visible="true">
+    </CalculatedMember>
   </Cube>
 </Schema>

@@ -1,62 +1,62 @@
-<Schema name="Vendas" measuresCaption="Medidas">
-  <Dimension type="StandardDimension" visible="true" foreignKey="pkCliente" highCardinality="false" name="Clientes">
-    <Hierarchy name="Cliente" visible="true" hasAll="true" primaryKey="pkCliente">
-      <Table name="dimClientes" schema="dbo">
-      </Table>
-      <Level name="Sexo" visible="true" table="dimClientes" column="SEXO" nameColumn="SEXO" ordinalColumn="SEXO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-      <Level name="ESTADO CIVIL" visible="true" table="dimClientes" column="ESTADO_CIVIL" nameColumn="ESTADO_CIVIL" parentColumn="SEXO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-      <Level name="CLIENTE" visible="true" table="dimClientes" column="NOME" ordinalColumn="pkCliente" parentColumn="ESTADO_CIVIL" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
-      </Level>
-    </Hierarchy>
-  </Dimension>
-  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Data">
-    <Hierarchy name="Data" visible="true" hasAll="true" primaryKey="ID">
-      <Table name="dimTempo" schema="dbo">
-      </Table>
-      <Level name="DIA" visible="true" table="dimTempo" column="DAY_DATE" type="String" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
-      </Level>
-      <Level name="MES" visible="true" table="dimTempo" column="month_name" ordinalColumn="month_number" parentColumn="year_number" type="String" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
-      </Level>
-      <Level name="ANO" visible="true" table="dimTempo" column="year_number" ordinalColumn="year_number" type="Numeric" uniqueMembers="false" levelType="TimeYears" hideMemberIf="Never">
-      </Level>
-    </Hierarchy>
-  </Dimension>
-  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Produtos">
-    <Hierarchy name="Produto" visible="true" hasAll="true" primaryKey="pkProduto">
+<Schema name="Pe&#231;as">
+  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Pe&#231;a">
+    <Hierarchy name="Produto" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkProduto">
       <Table name="dimProdutos" schema="dbo">
       </Table>
-      <Level name="Produto" visible="true" table="dimProdutos" column="DESCRICAO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="Pe&#231;a" visible="true" table="dimProdutos" column="DESCRICAO" nameColumn="DESCRICAO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
       </Level>
     </Hierarchy>
   </Dimension>
-  <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Local">
-    <Hierarchy name="Local" visible="true" hasAll="true">
-      <Table name="dimLocal" schema="dbo">
+  <Dimension type="TimeDimension" visible="true" highCardinality="false" name="Tempo">
+    <Hierarchy name="Tempo" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="ID">
+      <Table name="dimTempo" schema="dbo">
       </Table>
-      <Level name="Bairro" visible="true" table="dimLocal" column="BAIRRO" parentColumn="CIDADE" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="Ano" visible="true" table="dimTempo" column="year_number" type="Integer" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
       </Level>
-      <Level name="CIDADE" visible="true" table="dimLocal" column="CIDADE" parentColumn="ESTADO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="Mes" visible="true" table="dimTempo" column="month_number" type="Integer" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
       </Level>
-      <Level name="ESTADO" visible="true" table="dimLocal" column="ESTADO" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      <Level name="Dia" visible="true" table="dimTempo" column="day_of_month_number" type="Integer" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Local">
+    <Hierarchy name="Local" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkLocal">
+      <Table name="dimLocal" schema="dbo" alias="">
+      </Table>
+      <Level name="Estado" visible="true" column="ESTADO" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Cidade" visible="true" column="CIDADE" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Bairro" visible="true" column="BAIRRO" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Clientes">
+    <Hierarchy name="Clientes" visible="true" hasAll="true" allMemberName="Todos" allMemberCaption="Todos" allLevelName="Tudo" primaryKey="pkCliente">
+      <Table name="dimClientes" schema="dbo" alias="">
+      </Table>
+      <Level name="Sexo" visible="true" column="SEXO" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Estado Civil" visible="true" column="ESTADO_CIVIL" type="String" uniqueMembers="false" levelType="Regular">
+      </Level>
+      <Level name="Cliente" visible="true" column="NOME" type="String" uniqueMembers="false" levelType="Regular">
       </Level>
     </Hierarchy>
   </Dimension>
   <Cube name="Vendas" visible="true" cache="true" enabled="true">
-    <Table name="fatoPedidos" schema="dbo" alias="Pedidos">
+    <Table name="fatoPedidos" schema="dbo">
     </Table>
-    <DimensionUsage source="Clientes" name="Cliente" visible="true" foreignKey="pkCliente" highCardinality="false">
+    <DimensionUsage source="Pe&#231;a" name="Pe&#231;a" visible="true" foreignKey="pkProduto" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Produtos" name="Produto" visible="true" foreignKey="pkProduto" highCardinality="false">
+    <DimensionUsage source="Tempo" name="Tempo" visible="true" foreignKey="pkTempo" highCardinality="false">
     </DimensionUsage>
-    <DimensionUsage source="Local" name="Local" visible="true" foreignKey="pkLocal" highCardinality="false">
+    <DimensionUsage source="Local" name="Local" visible="true" foreignKey="pkLocal">
     </DimensionUsage>
-    <DimensionUsage source="Data" name="Data" visible="true" foreignKey="pkTempo" highCardinality="false">
+    <DimensionUsage source="Clientes" name="Clientes" visible="true" foreignKey="pkCliente">
     </DimensionUsage>
-    <Measure name="Quantidade" column="QUANTIDADE" datatype="Numeric" aggregator="sum" visible="true">
+    <Measure name="QTD" column="QUANTIDADE" datatype="Numeric" aggregator="sum" visible="true">
     </Measure>
-    <Measure name="Valor Unit&#225;rio" column="VALOR_UN" datatype="Numeric" aggregator="sum" visible="true">
+    <Measure name="VALOR" column="VALOR_UN" datatype="Numeric" aggregator="sum" visible="true">
     </Measure>
   </Cube>
 </Schema>
