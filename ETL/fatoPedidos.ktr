@@ -70,7 +70,7 @@
   <connection>
     <name>SqlServer</name>
     <server>localhost</server>
-    <type>MSSQL</type>
+    <type>MSSQLNATIVE</type>
     <access>Native</access>
     <database>biserver</database>
     <port>1433</port>
@@ -80,9 +80,11 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MSSQL.instance</code><attribute>SQLEXPRESS</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>MSSQLUseIntegratedSecurity</code><attribute>false</attribute></attribute>
       <attribute><code>MSSQL_DOUBLE_DECIMAL_SEPARATOR</code><attribute>N</attribute></attribute>
       <attribute><code>PORT_NUMBER</code><attribute>1433</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
@@ -127,8 +129,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>421</xloc>
-      <yloc>63</yloc>
+      <xloc>422</xloc>
+      <yloc>61</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -221,8 +223,8 @@
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>425</xloc>
-      <yloc>184</yloc>
+      <xloc>428</xloc>
+      <yloc>185</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -357,8 +359,8 @@ where c.Nome is not null
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>106</xloc>
-      <yloc>67</yloc>
+      <xloc>104</xloc>
+      <yloc>61</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
